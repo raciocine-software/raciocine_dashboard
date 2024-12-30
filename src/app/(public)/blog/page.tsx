@@ -19,6 +19,7 @@ interface dataFeathPost{
   postsData:any[]
   totalCount:number
 }
+const options = { next: { revalidate: 30 } };
 async function fetchPosts (start:any,end:any):Promise<dataFeathPost > {
   try {
     const [postsData, totalCount] = await Promise.all([
@@ -28,7 +29,7 @@ async function fetchPosts (start:any,end:any):Promise<dataFeathPost > {
         ]|order(publishedAt desc)[$start...$end]{
           _id, title, slug, publishedAt, image, description
         }`,
-        { start, end }
+        { start, end },options
       ),
       client.fetch(`count(*[_type == "post" && defined(slug.current)])`),
     ]);
