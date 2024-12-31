@@ -129,7 +129,7 @@ export default async function PostPage({
           />
         )}
         <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
-        <p>keywords=={JSON.stringify(post.keywords)}</p>
+        
         <div className="flex gap-2 items-center text-gray-500">
           <Calendar size={16} />
           <p className="text-sm">Publicado em {new Date(post.publishedAt).toLocaleDateString()}</p>
